@@ -54,7 +54,7 @@ export default function OpenPostionSection() {
       {showCreate ? (
         <CreatePostions onClose={() => setShowCreate(false)} />
       ) : (
-        <MainLayout className="p-10 min-h-screen">
+        <MainLayout className="py-10 min-h-screen">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold">Open Positions</h2>
             <button
@@ -65,7 +65,7 @@ export default function OpenPostionSection() {
               Add Position
             </button>
           </div>
-          <div className="bg-white rounded shadow overflow-x-auto">
+          <div className="bg-white rounded-md shadow overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-gray-50">
                 <tr>
@@ -80,7 +80,7 @@ export default function OpenPostionSection() {
 
               <tbody>
                 {positions?.map((job) => (
-                  <tr key={job._id} className="border-t">
+                  <tr key={job._id} className="border-t border-gray-300">
                     <td className="p-4">{job.position}</td>
                     <td className="p-4 line-clamp-1">{job.jobDescription}</td>
                     <td className="p-4 text-center">{job.jobType}</td>

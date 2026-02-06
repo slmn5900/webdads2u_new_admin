@@ -60,10 +60,31 @@ export const deletePosition = createAsyncThunk(
   },
 );
 
+export const getAllCareers = createAsyncThunk(
+  "positions/getAllCareers",
+  async (_, thunkAPI) => {
+    try {
+      const response = await FetchApi({
+        endpoint: "/career/get-all",
+        method: "GET",
+      });
+
+      if (response?.data?.success === false) {
+        return thunkAPI.rejectWithValue(response?.data?.errors);
+      }
+
+      return response?.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  },
+);
+
 const positionSlice = createSlice({
   name: "positions",
   initialState: {
     positions: [],
+    careers: [],
     loading: false,
     error: null,
     message: null,
@@ -116,6 +137,17 @@ const positionSlice = createSlice({
       .addCase(deletePosition.rejected, (state, action) => {
         state.loading = false;
         state.deletedError = action.payload;
+      })
+      .addCase(getAllCareers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllCareers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.careers = action.payload?.applications || [];
+      })
+      .addCase(getAllCareers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

@@ -1,7 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { Newspaper, Briefcase, Share2 } from "lucide-react";
+import {
+  Newspaper,
+  Briefcase,
+  Share2,
+  Mail,
+  Phone,
+  ClipboardList,
+  Users,
+} from "lucide-react";
 import webdadaslogo1 from "../../../assets/webdadaslogo1.svg";
+
 const Sidebar = () => {
   const baseLink =
     "flex items-center gap-3 px-3 py-2 text-sm rounded-md text-black hover:bg-gray-200";
@@ -33,8 +42,18 @@ const Sidebar = () => {
             `${baseLink} ${isActive ? "bg-gray-300 font-semibold" : ""}`
           }
         >
-          <Briefcase />
+          <Briefcase size={18} />
           Open Positions
+        </NavLink>
+
+        <NavLink
+          to="/apply-position"
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? "bg-gray-300 font-semibold" : ""}`
+          }
+        >
+          <Users   size={18} />
+          Career
         </NavLink>
 
         <NavLink
@@ -43,16 +62,47 @@ const Sidebar = () => {
             `${baseLink} ${isActive ? "bg-gray-300 font-semibold" : ""}`
           }
         >
-          <Share2 />
+          <Share2 size={18} />
           Social Updates
         </NavLink>
+
+        <NavLink
+          to="/enquiry"
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? "bg-gray-300 font-semibold" : ""}`
+          }
+        >
+          <Mail size={18} />
+          Project Enquiry
+        </NavLink>
+
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? "bg-gray-300 font-semibold" : ""}`
+          }
+        >
+          <Phone size={18} />
+          Contact
+        </NavLink>
+
+        <NavLink
+          to="/hires"
+          className={({ isActive }) =>
+            `${baseLink} ${isActive ? "bg-gray-300 font-semibold" : ""}`
+          }
+        >
+          <ClipboardList size={18} />
+          <span className="ml-2">Project Hires</span>
+        </NavLink>
+
         <NavLink
           to="/blog"
           className={({ isActive }) =>
             `${baseLink} ${isActive ? "bg-gray-300 font-semibold" : ""}`
           }
         >
-          <Newspaper />
+          <Newspaper size={18} />
           Blog
         </NavLink>
       </nav>

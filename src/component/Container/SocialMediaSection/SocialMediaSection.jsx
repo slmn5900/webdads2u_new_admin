@@ -38,12 +38,12 @@ export default function SocialMediaSection() {
   return showCreate ? (
     <CreateSocialMedia onClose={() => setShowCreate(false)} />
   ) : (
-    <MainLayout className="p-10">
+    <MainLayout className="py-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold">Social Updates</h2>
         <button
           onClick={() => setShowCreate(true)}
-          className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded"
+          className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-md"
         >
           <Plus size={16} />
           Add Social
