@@ -1,9 +1,8 @@
-"use client";
 import { useState, useEffect } from "react";
-import { ArrowLeft, Plus, Trash } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { ArrowLeft, Plus, Trash } from "lucide-react";
 
 import {
   createBlog,
@@ -117,7 +116,11 @@ export default function CreateBlog({ onClose, editData }) {
         {editData ? "Update Blog" : "Create Blog"}
       </h2>
 
-      <form key={editData?._id || "new"} onSubmit={handleSubmit} className="space-y-4">
+      <form
+        key={editData?._id || "new"}
+        onSubmit={handleSubmit}
+        className="space-y-4"
+      >
         <input
           name="title"
           value={form.title}
@@ -147,6 +150,9 @@ export default function CreateBlog({ onClose, editData }) {
           key={editData?._id || "new"}
           editor={ClassicEditor}
           data={form.description}
+          config={{
+            licenseKey: "GPL",
+          }}
           onChange={(e, editor) =>
             setForm({ ...form, description: editor.getData() })
           }
