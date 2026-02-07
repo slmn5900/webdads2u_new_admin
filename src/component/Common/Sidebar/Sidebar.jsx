@@ -13,10 +13,13 @@ import {
 import webdadaslogo1 from "../../../assets/webdadaslogo1.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../../store/slice/authSlice";
+import { Folder } from "lucide-react";
+import { useState } from "react";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [openOurWork, setOpenOurWork] = useState(false);
 
   const { accessToken } = useSelector((state) => state.auth);
 
@@ -25,7 +28,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/login"); 
+    navigate("/login");
   };
 
   return (
@@ -104,6 +107,16 @@ const Sidebar = () => {
           }
         >
           <Newspaper size={18} /> Blog
+        </NavLink>
+        <NavLink
+          to="/our-project"
+          className={({ isActive }) =>
+            ` px-3 py-2 text-sm rounded-md flex gap-2 ${
+              isActive ? "bg-gray-300 font-semibold" : "hover:bg-gray-200"
+            }`
+          }
+        >
+          <Folder size={18} /> Our Project
         </NavLink>
       </nav>
       {accessToken && (

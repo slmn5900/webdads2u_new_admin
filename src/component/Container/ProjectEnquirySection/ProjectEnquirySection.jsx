@@ -23,7 +23,6 @@ const ProjectEnquirySection = () => {
               <th className="p-4">Email</th>
               <th className="p-4">Phone</th>
               <th className="p-4">Project Description</th>
-              <th className="p-4">Status</th>
               <th className="p-4">Date</th>
             </tr>
           </thead>
@@ -38,17 +37,6 @@ const ProjectEnquirySection = () => {
                 <td className="p-3">{item.email}</td>
                 <td className="p-3">{item.phone}</td>
                 <td className="p-3">{item.projectDescription}</td>
-                <td className="p-3">
-                  <span
-                    className={`px-2 py-1 rounded text-xs ${
-                      item.status === 0
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-green-100 text-green-700"
-                    }`}
-                  >
-                    {item.status === 0 ? "New" : "Contacted"}
-                  </span>
-                </td>
                 <td className="p-3">
                   {new Date(item.createdAt).toLocaleDateString("en-IN")}
                 </td>

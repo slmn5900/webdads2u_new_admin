@@ -6,6 +6,8 @@ import hireusReducer from "./slice/hireusSlice";
 import authReducer from "./slice/authSlice";
 import blogReducer from "./slice/blogSlice";
 import enquiriesReducer from "./slice/projectEnquirySlice";
+import ourWorkReducer from "./slice/ourWorkSlice";
+import dashboardReducer from "./slice/dashboardSlice";
 const reducer = combineReducers({
   position: positionReducer,
   socialMedia: socialMediaReducer,
@@ -14,5 +16,7 @@ const reducer = combineReducers({
   auth: authReducer,
   blog: blogReducer,
   projectEnquiry: enquiriesReducer,
+  ourWork: ourWorkReducer,
+  dashboard: dashboardReducer,
 });
 export default reducer;
