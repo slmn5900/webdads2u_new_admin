@@ -1,4 +1,4 @@
-import BlogDeatailSection from "../../component/BlogDeatailSection/BlogDeatailSection";
+import BlogDeatailSection from "../../component/Container/BlogDeatailSection/BlogDeatailSection";
 
 const BlogDeatails = () => {
   return <BlogDeatailSection />;

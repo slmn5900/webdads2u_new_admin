@@ -16,6 +16,7 @@ import Blog from "./pages/Blog/Blog";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BlogDeatails from "./pages/BlogDeatails/BlogDeatails";
+import ProjectEnquiry from "./pages/ProjectEnquiry/ProjectEnquiry";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
           <Route path="/hires" element={<HireUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDeatails />} />
+          <Route path="/enquiry" element={<ProjectEnquiry />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
