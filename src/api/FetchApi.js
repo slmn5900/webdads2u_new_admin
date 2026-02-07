@@ -1,5 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL;
-const FETCH_TIMEOUT = 15000;
+const FETCH_TIMEOUT = 20000;
 
 export const FetchApi = async ({
   endpoint,

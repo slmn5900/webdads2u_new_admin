@@ -1,5 +1,7 @@
+import HomeSection from "../../component/Container/HomeSection/HomeSection";
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <HomeSection />;
 };
 
 export default HomePage;
