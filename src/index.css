@@ -17,3 +17,13 @@ body {
 .ck-editor__editable {
   min-height: 250px;
 }
+
+.ck-content ol {
+  list-style-type: decimal !important;
+  padding-left: 20px !important;
+}
+
+.ck-content ul {
+  list-style-type: disc !important;
+  padding-left: 20px !important;
+}
