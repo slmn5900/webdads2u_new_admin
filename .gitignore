@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Node dependencies
 /node_modules
 /.pnp
@@ -78,3 +79,29 @@ $RECYCLE.BIN/
 /bower_components/
 jspm_packages/
 
+=======
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+>>>>>>> 0d67c37dd59d13e77dff8ed4e48b09575d401f45

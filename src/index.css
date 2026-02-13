@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "The Future";
+  src: url("/fonts/TheFuture-Extralight.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "The Future", sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ck-editor__editable {
+  min-height: 250px;
+}
