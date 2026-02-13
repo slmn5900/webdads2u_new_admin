@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&family=Poppins:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import "tailwindcss";
+
+:root {
+  --primary-red: #fa0400;
+}
+
+@font-face {
+  font-family: "The Future";
+  src: url("/fonts/TheFuture-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "The Future";
+  src: url("/fonts/TheFuture-Extralight.woff2") format("woff2");
+  font-weight: 500;
+}
+
+body {
+  font-family: "The Future", sans-serif;
+}
+
+.text_primary {
+  color: var(--primary-red);
+}
+
+.bg_primary {
+  background-color: var(--primary-red);
+}
+
+.text_manrope {
+  font-family: var(--font-manrope);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.overflow-y-auto,
+.overflow-auto {
+  overscroll-behavior: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee-left 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track.reverse {
+  animation: marquee-right 46s linear infinite;
+}
+
+.logo-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 128px;
+  width: 240px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition:
+    background 0.3s ease,
+    border 0.6s ease;
+}
+
+.logo-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media screen and(max-width: 768px) {
+  .logo-card img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}

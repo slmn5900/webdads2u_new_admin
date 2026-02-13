@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.webdads2u.com
+
+# Sitemaps
+Sitemap: https://www.webdads2u.com/sitemap.xml
