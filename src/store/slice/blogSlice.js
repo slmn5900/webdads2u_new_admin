@@ -167,7 +167,7 @@ const blogSlice = createSlice({
       })
       .addCase(getBlogDetails.fulfilled, (state, action) => {
         state.loading = false;
-        state.singleBlog = action.payload?.data?.blog;
+        state.singleBlog = action.payload?.blog;
       })
       .addCase(getBlogDetails.rejected, (state, action) => {
         state.loading = false;
