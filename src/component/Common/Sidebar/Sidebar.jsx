@@ -11,6 +11,7 @@ import {
   LogOut,
   Folder,
   ChevronRight,
+  Cloud,
 } from "lucide-react";
 import webdadaslogo1 from "../../../assets/webdadaslogo1.svg";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,7 +22,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { accessToken } = useSelector((state) => state.auth);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -80,6 +81,11 @@ const Sidebar = () => {
             to: "/our-project",
             icon: <Folder size={18} />,
             label: "Our Project",
+          },
+          {
+            to: "/cdn-generate",
+            icon: <Cloud size={18} />,
+            label: "Cdn Generate",
           },
         ].map((item, index) => (
           <NavLink

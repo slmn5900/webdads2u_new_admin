@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import BlogDeatails from "./pages/BlogDeatails/BlogDeatails";
 import ProjectEnquiry from "./pages/ProjectEnquiry/ProjectEnquiry";
 import OurWork from "./pages/OurWork/OurWork";
+import CdnGenerate from "./pages/CdnGenerate/CdnGenerate";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
           <Route path="/blog/:id" element={<BlogDeatails />} />
           <Route path="/enquiry" element={<ProjectEnquiry />} />
           <Route path="/our-project" element={<OurWork />} />
+          <Route path="/cdn-generate" element={<CdnGenerate />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
