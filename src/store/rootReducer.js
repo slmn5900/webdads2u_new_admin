@@ -8,6 +8,7 @@ import blogReducer from "./slice/blogSlice";
 import enquiriesReducer from "./slice/projectEnquirySlice";
 import ourWorkReducer from "./slice/ourWorkSlice";
 import dashboardReducer from "./slice/dashboardSlice";
+import mediaSliceReducer from "./slice/mediaSlice";
 const reducer = combineReducers({
   position: positionReducer,
   socialMedia: socialMediaReducer,
@@ -18,5 +19,6 @@ const reducer = combineReducers({
   projectEnquiry: enquiriesReducer,
   ourWork: ourWorkReducer,
   dashboard: dashboardReducer,
+  mediaSlice: mediaSliceReducer,
 });
 export default reducer;

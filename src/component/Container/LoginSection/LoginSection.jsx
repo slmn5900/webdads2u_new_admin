@@ -82,7 +82,7 @@ const LoginSection = () => {
             {loading ? "Logging in..." : "Login"}
           </button>
           {error && (
-            <div className="bg-red-100 text-red-600 p-2 rounded mb-4 text-sm">
+            <div className="bg-red-100 text-red-600 p-2 rounded mb-4 text-sm text-center">
               {" "}
               {error}{" "}
             </div>

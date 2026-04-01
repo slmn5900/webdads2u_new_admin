@@ -21,6 +21,7 @@ import { useState } from "react";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const { accessToken } = useSelector((state) => state.auth);
   const [isOpen, setIsOpen] = useState(true);
 

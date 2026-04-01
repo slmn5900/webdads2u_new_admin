@@ -1,50 +1,119 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearMediaError,
+  clearMediaMessage,
+  deleteMedia,
+  getMediaList,
+  resetMedia,
+} from "../../../store/slice/mediaSlice";
+import { MediaCard } from "./MediaCard";
+import { SkeletonCard } from "../../../common/SkeletonCard";
 
 const CdnGenerateSection = () => {
-  const [category, setCategory] = useState("");
-  const [file, setFile] = useState(null);
+  const dispatch = useDispatch();
+  const { files, loading, message, error, pagination, loadingMore } =
+    useSelector((state) => state.mediaSlice);
+  const [category, setCategory] = useState("images");
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+  useEffect(() => {
+    dispatch(resetMedia());
+    dispatch(getMediaList({ type: category, limit: 5 }));
+  }, [dispatch, category]);
+
+  useEffect(() => {
+    if (message) {
+      dispatch(clearMediaMessage());
+    }
+    if (error) {
+      dispatch(clearMediaError());
+    }
+  }, [message, error]);
+
+  const handleLoadMore = () => {
+    if (pagination?.hasNextPage) {
+      dispatch(
+        getMediaList({
+          type: category,
+          limit: 5,
+          continuationToken: pagination?.nextToken,
+        }),
+      );
+    }
+  };
+
+  const handleDelete = (item) => {
+    dispatch(deleteMedia({ key: item.key }));
   };
 
   return (
-    <div className="p-6 mt-6 mx-auto bg-white rounded-xl shadow">
-      <h2 className="text-xl font-semibold mb-4">CDN Generate</h2>
-      <div className="mb-5">
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Category
-        </label>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none "
-        >
-          <option value="">Select Category</option>
-          <option value="image">Image</option>
-          <option value="video">Video</option>
-        </select>
+    <div className="p-6">
+      <h2 className="text-lg font-semibold text-gray-900 mb-5">CDN Assets</h2>
+      <div className="flex justify-between">
+        <div className="inline-flex bg-gray-100 rounded-xl p-1 mb-6 gap-1">
+          {["images", "videos"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setCategory(tab)}
+              className={`px-5 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                category === tab
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-400 hover:text-gray-600"
+              }`}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
       </div>
-      <div className="mb-5">
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Upload File
-        </label>
-
-        <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer  transition">
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-gray-500 text-sm">
-              {file ? file.name : "Click or drag file to upload"}
-            </p>
-          </div>
-
-          <input type="file" className="hidden" onChange={handleFileChange} />
-        </label>
-      </div>
-      <div className="flex justify-end">
-        <button className="bg-black text-white px-5 py-2 rounded-lg transition">
-          Generate CDN Link
-        </button>
-      </div>
+      {loading ? (
+        <div className="grid grid-cols-4 gap-4">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
+      ) : files.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-16 text-gray-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="mb-3 opacity-40"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          <p className="text-sm">No files found</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-3 gap-4">
+          {files?.map((item) => (
+            <MediaCard
+              key={item.key}
+              item={item}
+              category={category}
+              onDelete={(item) => handleDelete(item)}
+            />
+          ))}
+        </div>
+      )}
+      {files.length > 0 && pagination?.hasNextPage && (
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={handleLoadMore}
+            className="px-5 py-2 rounded-lg bg-gray-900 text-white text-sm hover:bg-gray-700"
+          >
+            {loadingMore ? "Loading..." : "Load More"}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
