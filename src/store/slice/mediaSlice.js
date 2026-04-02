@@ -129,8 +129,8 @@ const mediaSlice = createSlice({
           state.files = newFiles;
         }
         state.pagination = {
-          nextToken: action.payload?.nextContinuationToken || null,
-          hasNextPage: action.payload?.hasNextPage || false,
+          nextToken: action.payload?.pagination?.nextContinuationToken || null,
+          hasNextPage: action.payload?.pagination?.hasNextPage || false,
         };
       })
       .addCase(getMediaList.rejected, (state, action) => {
