@@ -36,7 +36,7 @@ const CdnGenerateSection = () => {
 
   useEffect(() => {
     dispatch(resetMedia());
-    dispatch(getMediaList({ type: category, limit: 5 }));
+    dispatch(getMediaList({ type: category, limit: 10 }));
   }, [dispatch, category]);
 
   useEffect(() => {
@@ -77,9 +77,8 @@ const CdnGenerateSection = () => {
 
   useEffect(() => {
     if (message) {
-      successAlert(message);
       setCreateOpen(false);
-      dispatch(getMediaList({ type: category, limit: 5 }));
+      dispatch(getMediaList({ type: category, limit: 10 }));
       dispatch(clearMediaMessage());
     }
     if (error) {
@@ -91,7 +90,7 @@ const CdnGenerateSection = () => {
   useEffect(() => {
     if (deleteMessage) {
       successAlert(deleteMessage);
-      dispatch(getMediaList({ type: category, limit: 5 }));
+      dispatch(getMediaList({ type: category, limit: 10 }));
       dispatch(clearMediaMessage());
     }
     if (deleteError) {
