@@ -39,7 +39,12 @@ const LoginSection = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
+      <div
+        className="bg-white rounded-2xl p-8 w-full max-w-md 
+shadow-[0_20px_60px_rgba(0,0,0,0.15)] 
+hover:shadow-[0_25px_80px_rgba(0,0,0,0.2)] 
+transition duration-300"
+      >
         <div className="flex justify-center">
           <img src={user} alt="User-img" className="w-10" />
         </div>
@@ -77,7 +82,7 @@ const LoginSection = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition"
+            className="w-full bg-black text-white py-2 rounded-md  transition"
           >
             {loading ? "Logging in..." : "Login"}
           </button>
