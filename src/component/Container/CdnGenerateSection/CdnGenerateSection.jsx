@@ -33,6 +33,7 @@ const CdnGenerateSection = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const token = encodeURIComponent(pagination?.nextToken);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(resetMedia());
@@ -44,6 +45,10 @@ const CdnGenerateSection = () => {
       setUploadResult(file);
     }
   }, [file]);
+
+  const filteredFiles = files.filter((item) =>
+    item.key.toLowerCase().includes(search.toLowerCase()),
+  );
 
   const handleLoadMore = () => {
     if (pagination?.hasNextPage) {
@@ -108,28 +113,39 @@ const CdnGenerateSection = () => {
           <h2 className="text-lg font-semibold text-gray-900 mb-5">
             CDN Assets
           </h2>
-          <div className="flex justify-between items-center">
-            <div className="inline-flex bg-gray-100 rounded-xl p-1 mb-6 gap-1">
-              {["images", "videos"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setCategory(tab)}
-                  className={`px-5 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
-                    category === tab
-                      ? "bg-white text-gray-900 shadow-sm"
-                      : "text-gray-400 hover:text-gray-600"
-                  }`}
-                >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                </button>
-              ))}
+          <div className="flex justify-between items-center mb-10">
+            <div className="flex gap-3 items-center ">
+              <input
+                type="text"
+                placeholder="Search files..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="border px-3 py-1.5 rounded-md text-sm w-64 outline-none focus:ring-2 border-gray-300 focus:ring-gray-300"
+              />
             </div>
-            <button
-              onClick={() => setCreateOpen(true)}
-              className="bg-black text-white px-6 py-1 rounded-md cursor-pointer"
-            >
-              Create
-            </button>
+            <div className="flex gap-4 items-center">
+              <div className="inline-flex bg-gray-100 rounded-xl p-1  gap-1">
+                {["images", "videos"].map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setCategory(tab)}
+                    className={`px-5 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                      category === tab
+                        ? "bg-black text-white shadow-sm"
+                        : "text-gray-400 hover:text-gray-600"
+                    }`}
+                  >
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setCreateOpen(true)}
+                className="bg-black text-white px-6 py-1 rounded-md cursor-pointer"
+              >
+                Create
+              </button>
+            </div>
           </div>
           {loading ? (
             <div className="grid grid-cols-4 gap-4">
@@ -137,7 +153,7 @@ const CdnGenerateSection = () => {
                 <SkeletonCard key={i} />
               ))}
             </div>
-          ) : files.length === 0 ? (
+          ) : filteredFiles.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-gray-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +175,7 @@ const CdnGenerateSection = () => {
             </div>
           ) : (
             <div className="grid grid-cols-4 gap-4">
-              {files?.map((item) => (
+              {filteredFiles?.map((item) => (
                 <MediaCard
                   key={item.key}
                   item={item}
@@ -169,7 +185,7 @@ const CdnGenerateSection = () => {
               ))}
             </div>
           )}
-          {files.length > 0 && pagination?.hasNextPage && (
+          {filteredFiles.length > 0 && pagination?.hasNextPage && (
             <div className="flex justify-center mt-6">
               <button
                 onClick={handleLoadMore}
