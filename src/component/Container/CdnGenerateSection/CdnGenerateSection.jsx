@@ -32,6 +32,7 @@ const CdnGenerateSection = () => {
   const [category, setCategory] = useState("images");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const token = encodeURIComponent(pagination?.nextToken);
 
   useEffect(() => {
     dispatch(resetMedia());
@@ -50,7 +51,7 @@ const CdnGenerateSection = () => {
         getMediaList({
           type: category,
           limit: 5,
-          continuationToken: pagination?.nextToken,
+          continuationToken: token,
         }),
       );
     }
