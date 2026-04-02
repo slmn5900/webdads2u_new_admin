@@ -64,12 +64,11 @@ export const MediaCard = ({ item, category, onDelete }) => {
           <button
             onClick={handleCopy}
             title={copied ? "Copied!" : "Copy URL"}
-            className={`shrink-0 transition-colors duration-200 ${copied ? "text-emerald-500" : "text-gray-300 hover:text-gray-600"}`}
+            className={`shrink-0 transition-colors duration-200 ${copied ? "text-emerald-500" : "text-gray-600 hover:text-gray-600"}`}
           >
             {copied ? <CheckIcon /> : <CopyIcon />}
           </button>
         </div>
-
         <div className="flex justify-end">
           <button
             onClick={() => onDelete(item)}

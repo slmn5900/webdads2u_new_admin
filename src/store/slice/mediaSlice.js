@@ -74,16 +74,19 @@ const mediaSlice = createSlice({
   name: "media",
   initialState: {
     files: [],
+    file: null,
     loadingMore: false,
     loading: false,
     pagination: null,
     error: null,
     message: null,
     deleteMessage: null,
+    deleteError: null,
   },
   reducers: {
     clearMediaError(state) {
       state.error = null;
+      state.deleteError = null;
     },
     clearMediaMessage(state) {
       state.message = null;
@@ -99,9 +102,10 @@ const mediaSlice = createSlice({
       .addCase(uploadMedia.pending, (state) => {
         state.loading = true;
       })
-      .addCase(uploadMedia.fulfilled, (state) => {
+      .addCase(uploadMedia.fulfilled, (state, action) => {
         state.loading = false;
         state.message = "Media uploaded successfully";
+        state.file = action.payload?.file;
       })
       .addCase(uploadMedia.rejected, (state, action) => {
         state.loading = false;
@@ -124,7 +128,6 @@ const mediaSlice = createSlice({
         } else {
           state.files = newFiles;
         }
-
         state.pagination = {
           nextToken: action.payload?.nextContinuationToken || null,
           hasNextPage: action.payload?.hasNextPage || false,
@@ -145,7 +148,7 @@ const mediaSlice = createSlice({
       })
       .addCase(deleteMedia.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.deleteError = action.payload;
       });
   },
 });
