@@ -35,7 +35,7 @@ export const refreshToken = createAsyncThunk(
       });
 
       const data = response?.data;
-      if (data?.admin?.accessToken) {
+      if (data?.accessToken) {
         localStorage.setItem("tokenExpiry", Date.now() + 50 * 60 * 1000);
       }
 
@@ -94,9 +94,8 @@ const authSlice = createSlice({
       })
 
       .addCase(refreshToken.fulfilled, (state, action) => {
-        state.accessToken = action.payload?.admin?.accessToken;
-        state.refreshToken =
-          action.payload?.admin?.refreshToken || state.refreshToken;
+        state.accessToken = action.payload?.accessToken;
+        state.refreshToken = action.payload?.refreshToken || state.refreshToken;
       })
       .addCase(refreshToken.rejected, (state, action) => {
         state.refreshError = action.payload || "Failed to refresh token";

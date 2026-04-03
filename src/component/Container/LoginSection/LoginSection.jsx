@@ -17,12 +17,11 @@ const LoginSection = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { loading, error, accessToken } = useSelector((state) => state.auth);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginAdmin({ email, password }));
   };
-
-  console.log("ACCESS TOKEN:", accessToken);
 
   useEffect(() => {
     if (accessToken) {
