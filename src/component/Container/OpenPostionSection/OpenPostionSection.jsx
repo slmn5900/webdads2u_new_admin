@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import MainLayout from "../../../common/MainLayout";
-import { Pencil, Trash2, Plus } from "lucide-react";
+import { Trash2, Plus } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import ConfirmDeleteModal from "../../../common/ConfirmDeleteModal";
 import {

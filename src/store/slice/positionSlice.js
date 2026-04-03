@@ -4,11 +4,14 @@ import { FetchApi } from "../../api/FetchApi";
 export const createPosition = createAsyncThunk(
   "positions/createPosition",
   async (data, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state?.auth?.accessToken;
     try {
       const response = await FetchApi({
         endpoint: "/position/create",
         method: "POST",
         body: data,
+        token,
       });
 
       if (response?.data?.success === false) {
@@ -24,10 +27,13 @@ export const createPosition = createAsyncThunk(
 export const getAllPositions = createAsyncThunk(
   "positions/getAllPositions",
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state?.auth?.accessToken;
     try {
       const response = await FetchApi({
         endpoint: "/position/get-all",
         method: "GET",
+        token,
       });
 
       if (response?.data?.success === false) {
@@ -44,10 +50,13 @@ export const getAllPositions = createAsyncThunk(
 export const deletePosition = createAsyncThunk(
   "positions/deletePosition",
   async ({ id }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state?.auth?.accessToken;
     try {
       const response = await FetchApi({
         endpoint: `/position/delete/${id}`,
         method: "DELETE",
+        token,
       });
 
       if (response?.data?.success === false) {
@@ -63,10 +72,13 @@ export const deletePosition = createAsyncThunk(
 export const getAllCareers = createAsyncThunk(
   "positions/getAllCareers",
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state?.auth?.accessToken;
     try {
       const response = await FetchApi({
         endpoint: "/career/get-all",
         method: "GET",
+        token,
       });
 
       if (response?.data?.success === false) {
