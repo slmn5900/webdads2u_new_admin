@@ -68,14 +68,13 @@ export const updateBlog = createAsyncThunk(
     try {
       const response = await FetchApi({
         endpoint: `/blogWebsite/update/${id}`,
-        method: "PUT",
+        method: "PATCH",
         body: data,
       });
 
       if (response?.data?.success === false) {
         return thunkAPI.rejectWithValue(response?.data?.errors);
       }
-
       return response?.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

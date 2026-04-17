@@ -17,13 +17,28 @@ import webdadaslogo1 from "../../../assets/webdadaslogo1.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../../store/slice/authSlice";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const { accessToken } = useSelector((state) => state.auth);
   const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsOpen(false);
+      } else {
+        setIsOpen(true);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -35,9 +50,8 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`h-screen ${
-        isOpen ? "w-64" : "w-16"
-      } bg-white border-r border-gray-200 flex flex-col transition-all duration-300`}
+      className={`h-screen ${isOpen ? "w-64" : "w-16"
+        } bg-white border-r border-gray-200 flex flex-col transition-all duration-300`}
     >
       <div className="flex items-center justify-between px-3 h-20">
         {isOpen && <img src={webdadaslogo1} alt="logo" className="h-8" />}
@@ -46,9 +60,8 @@ const Sidebar = () => {
           className="p-2 rounded hover:bg-gray-200"
         >
           <ChevronRight
-            className={`transition-transform duration-300 ${
-              isOpen ? "rotate-180" : ""
-            }`}
+            className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+              }`}
           />
         </button>
       </div>

@@ -12,7 +12,7 @@ export default function BlogCard({ blog, onDelete, onEdit }) {
       <div className="absolute top-3 right-3 z-20">
         <MoreVertical
           size={18}
-          className="cursor-pointer"
+          className="cursor-pointer text-white"
           onClick={(e) => {
             e.stopPropagation();
             setOpen(!open);
