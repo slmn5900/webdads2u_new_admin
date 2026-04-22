@@ -49,7 +49,7 @@ export default function BlogCard({ blog, onDelete, onEdit }) {
         )}
       </div>
       <div
-        onClick={() => navigate(`/blog/${blog._id}`)}
+        onClick={() => navigate(`/blog/${blog.slug}`)}
         className="cursor-pointer"
       >
         <Image
